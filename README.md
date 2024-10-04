@@ -35,9 +35,9 @@ fee-on-transfer tokens (tax tokens) are not compatible with the concentrated liq
 - **Previous audits:**  Consensys Diligence audit (concluded as of today, remediations will be made and updated to the repo shortly)
   - ✅ SCOUTS: If there are multiple report links, please format them in a list.
 - **Documentation:** https://docs.ramses.exchange/
-- **Website:** 🐺 CA: add a link to the sponsor's website
-- **X/Twitter:** 🐺 CA: add a link to the sponsor's Twitter
-- **Discord:** 🐺 CA: add a link to the sponsor's Discord
+- **Website:** https://www.ramses.exchange/
+- **X/Twitter:** https://x.com/RamsesExchange
+- **Discord:** https://discord.gg/ramses
 
 ---
 
@@ -436,7 +436,7 @@ make gas
 ✅ SCOUTS: Add a screenshot of your terminal showing the test coverage
 
 ## Miscellaneous
-Employees of [SPONSOR NAME] and employees' family members are ineligible to participate in this audit.
+Employees of Ramses Exchange and employees' family members are ineligible to participate in this audit.
 
 Code4rena's rules cannot be overridden by the contents of this README. In case of doubt, please check with C4 staff.
 
