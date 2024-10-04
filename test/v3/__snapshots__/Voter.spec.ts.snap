@@ -1,0 +1,289 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Voter #claimClGaugeRewards, claimIncentives, claimRewards #claimClGaugeRewards 1`] = `
+Object {
+  "mimIncrease": 99999999999999999998n,
+  "ramIncrease": 494999999999999999996n,
+}
+`;
+
+exports[`Voter #claimClGaugeRewards, claimIncentives, claimRewards #claimIncentives 1`] = `
+Object {
+  "daiIncrease": 499872727946956569n,
+  "mimIncrease": 0n,
+  "otherPairIncrease": 249885110624218638n,
+  "pairIncrease": 249885110624218638n,
+  "ramIncrease": 0n,
+  "usdcIncrease": 999770221248437320n,
+  "usdtIncrease": 499897493301480751n,
+}
+`;
+
+exports[`Voter #claimClGaugeRewards, claimIncentives, claimRewards #claimRewards 1`] = `
+Object {
+  "mimIncrease": 99999999999999998900n,
+  "ramIncrease": 494999999999999999504n,
+}
+`;
+
+exports[`Voter #distribute, distributeForPeriod normal operation on distribute for cl gauge 1`] = `
+Object {
+  "usdc": 249999999999999999n,
+  "usdt": 250000000000000000n,
+}
+`;
+
+exports[`Voter #killGauge Normal case - legacy gauges FeeSplitWhenNoGauge == false 1`] = `
+Object {
+  "clVotes": 500000000000000000000n,
+  "pairVotes": 0n,
+}
+`;
+
+exports[`Voter #killGauge Normal case - legacy gauges FeeSplitWhenNoGauge == true 1`] = `
+Object {
+  "clVotes": 500000000000000000000n,
+  "pairVotes": 0n,
+}
+`;
+
+exports[`Voter #killGauge Normal case - legacy gauges no votes on pool 1`] = `
+Object {
+  "clVotes": 500000000000000000000n,
+  "pairVotes": 0n,
+}
+`;
+
+exports[`Voter #killGauge Normal case - legacy gauges some votes on pool 1`] = `10001127857500000000000000n`;
+
+exports[`Voter #killGauge Normal case - legacy gauges some votes on pool 2`] = `
+Object {
+  "clVotes": 500000000000000000000n,
+  "pairVotes": 0n,
+}
+`;
+
+exports[`Voter #reviveGauge Revive killed gauges revive cl gauge 1`] = `
+Object {
+  "clVotes": 500000000000000000000n,
+  "pairVotes": 0n,
+}
+`;
+
+exports[`Voter #reviveGauge Revive killed gauges revive legacy gauge 1`] = `
+Object {
+  "clVotes": 0n,
+  "pairVotes": 500000000000000000000n,
+}
+`;
+
+exports[`Voter #setMainCurve normal operation 1`] = `249885110624218638n`;
+
+exports[`Voter #view functions #getVotes 1`] = `
+ [
+   [],
+   [],
+]
+`;
+
+exports[`Voter #view functions #getVotes 2`] = `
+ [
+   [
+    "0xBC0426FBc7e94373C8Fd36960E7f086B6576F6e4",
+  ],
+   [
+    1000000000000000000000n,
+  ],
+]
+`;
+
+exports[`Voter #view functions #getVotes 3`] = `
+ [
+   [
+    "0xBC0426FBc7e94373C8Fd36960E7f086B6576F6e4",
+    "0x262Af6abD20fA46333eC6F007057C70884248588",
+  ],
+   [
+    500000000000000000000n,
+    500000000000000000000n,
+  ],
+]
+`;
+
+exports[`Voter #view functions #getVotes 4`] = `
+ [
+   [
+    "0xBC0426FBc7e94373C8Fd36960E7f086B6576F6e4",
+    "0x262Af6abD20fA46333eC6F007057C70884248588",
+  ],
+   [
+    250000000000000000000n,
+    750000000000000000000n,
+  ],
+]
+`;
+
+exports[`Voter #view functions #getVotes 5`] = `
+ [
+   [
+    "0xBC0426FBc7e94373C8Fd36960E7f086B6576F6e4",
+    "0x262Af6abD20fA46333eC6F007057C70884248588",
+  ],
+   [
+    250000000000000000000n,
+    750000000000000000000n,
+  ],
+]
+`;
+
+exports[`Voter #view functions #getVotes 6`] = `
+ [
+   [
+    "0xBC0426FBc7e94373C8Fd36960E7f086B6576F6e4",
+    "0x262Af6abD20fA46333eC6F007057C70884248588",
+  ],
+   [
+    250000000000000000000n,
+    750000000000000000000n,
+  ],
+]
+`;
+
+exports[`Voter #view functions #getVotes 7`] = `
+ [
+   [],
+   [],
+]
+`;
+
+exports[`Voter #vote, poke, reset mismatched lengths 1`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;
+
+exports[`Voter #vote, poke, reset mismatched lengths 2`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;
+
+exports[`Voter #vote, poke, reset mismatched lengths 3`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for duplicate pools shouldn't cause problems 1`] = `
+Object {
+  "totalVotesPerPeriod": 500000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 500000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for duplicate pools shouldn't cause problems 2`] = `
+Object {
+  "totalVotesPerPeriod": 1000000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 1000000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for duplicate pools shouldn't cause problems 3`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for pools without an active gauge should record the right totals 1`] = `
+Object {
+  "totalVotesPerPeriod": 500000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 500000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for pools without an active gauge should record the right totals 2`] = `
+Object {
+  "totalVotesPerPeriod": 1000000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 1000000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting for pools without an active gauge should record the right totals 3`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting normally 1`] = `
+Object {
+  "totalVotesPerPeriod": 1000000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 1000000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting normally 2`] = `
+Object {
+  "totalVotesPerPeriod": 1000000000000000000000n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 1000000000000000000000n,
+}
+`;
+
+exports[`Voter #vote, poke, reset voting normally 3`] = `
+Object {
+  "totalVotesPerPeriod": 0n,
+  "votes": Object {
+    "clPool": 0n,
+    "pair": 0n,
+  },
+  "votingPowerUsed": 0n,
+}
+`;

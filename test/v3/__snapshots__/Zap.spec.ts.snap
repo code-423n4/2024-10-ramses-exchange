@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Zap #zap in addLiquidityAndStake 1`] = `999999999999999999000n`;
+
+exports[`Zap #zap in addLiquidityETHAndStake 1`] = `999999999999999999000n`;

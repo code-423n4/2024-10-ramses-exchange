@@ -1,0 +1,11 @@
+{
+  "name": "permit2",
+  "version": "1.0.0",
+  "files": [
+    "src/**/*.sol"
+  ],
+  "repository": {
+    "type": "files",
+    "url": "./contract/permit2"
+  }
+}
