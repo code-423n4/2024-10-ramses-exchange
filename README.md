@@ -64,7 +64,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ### Files out of scope
 
-*See [out_of_scope.txt](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/out_of_scope.txt)*
+* See [out_of_scope.txt](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/out_of_scope.txt)*
 
 * Any files not listed in the scope table is OOS
 
