@@ -64,7 +64,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ### Files out of scope
 
-* See [out_of_scope.txt](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/out_of_scope.txt)*
+* See [out_of_scope.txt](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/out_of_scope.txt)
 
 * Any files not listed in the scope table is OOS
 
@@ -76,7 +76,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
 | ERC20 used by the protocol              |       Any (all possible ERC20s)            |
-| Test coverage                           | ✅ SCOUTS: Please populate this after running the test coverage command                          |
+| Test coverage                           | The contest is subject to test coverage invitational competition                         |
 | ERC721 used  by the protocol            |           NonFungiblePositionManager              |
 | ERC777 used by the protocol             |           None               |
 | ERC1155 used by the protocol            |              None            |
@@ -154,17 +154,13 @@ cd 2024-10-ramses-exchange
 npx hardhat compile
 npx hardhat test
 ```
-To run code coverage
-```bash
-npx hardhat coverage
-```
-To run gas benchmarks
+
+To run `uniswapV3CoreTests` gas profiling;
 ```bash
 npx hardhat test test/uniswapV3CoreTests/UniswapV3Pool.gas.spec.ts
 ```
 
-✅ SCOUTS: Add a screenshot of your terminal showing the gas report
-✅ SCOUTS: Add a screenshot of your terminal showing the test coverage
+
 
 ## Miscellaneous
 Employees of Ramses Exchange and employees' family members are ineligible to participate in this audit.
