@@ -10,15 +10,24 @@
 - Starts October 8, 2024 20:00 UTC
 - Ends October 29, 2024 20:00 UTC
 
-ℹ️ This competition will include [Rolling Triage](https://code4rena.notion.site/Rolling-triage-how-it-works-11298baa1c14807ebd69cf43bf4f67c6?pvs=25). Questions/feedback can be shared in [this Discord thread](https://discord.com/channels/810916927919620096/1291194011012567051).
+ℹ️ This competition includes [Rolling Triage](https://code4rena.notion.site/Rolling-triage-how-it-works-11298baa1c14807ebd69cf43bf4f67c6?pvs=25). The submission phases are as follows: 
+
+- **Week 1:**
+  - Oct 8-11 (Tue-Fri): submissions open (HMs only)
+  - Oct 11-15 (Fri-Tue): submissions paused for triage
+- **Week 2:**
+  - Oct 15-18 (Tue-Fri): submissions open (HMs only)
+  - Oct 18-22 (Fri-Tue): submissions paused for triage
+- **Week 3:**
+  - Oct 22-29 (Tue-Tue): submissions open (HM + QA)
+
+Questions about rolling triage may be asked in [this Discord thread](https://discord.com/channels/810916927919620096/1291194011012567051).
 
 *Note: This competition will be followed by a private Zenith mitigation review.*
 
 ## Automated Findings / Publicly Known Issues
 
 The 4naly3er report can be found [here](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/4naly3er-report.md).
-
-
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
