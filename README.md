@@ -40,9 +40,9 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ## Links
 
-- **Previous audits:**  Consensys Diligence audit (concluded as of today, remediations will be made and updated to the repo shortly)
+- **Previous audits:**  N/A for V3, no **public** audit reports available at the time of competition.
   - ✅ SCOUTS: If there are multiple report links, please format them in a list.
-- **Documentation:** https://docs.ramses.exchange/
+- **Documentation:** https://docs.ramses.exchange/ note: all existing live documentation is for V2 (existing deployment)
 - **Website:** https://www.ramses.exchange/
 - **X/Twitter:** https://x.com/RamsesExchange
 - **Discord:** https://discord.gg/ramses
@@ -139,7 +139,8 @@ None
 
 
 ## Attack ideas (where to focus for bugs)
-- Finding cases where the math is irregular or returns improper results. Namely ensuring pool integrity and safety of user deposits. Secondly, reward accounting being accurate and not substantially inflated or deflated from reality are crucial.
+- Finding cases where the math is irregular or returns improper results. Namely ensuring pool integrity and safety of user deposits. 
+- Secondly, reward accounting being accurate and not substantially inflated or deflated from reality are crucial.
 
 
 ## All trusted roles in the protocol
