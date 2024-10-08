@@ -46,6 +46,9 @@ With advanced liquidity mining & a community-driven governance system, it delive
 Ramses V3 (the codebase for this competition) refines our existing contracts from our V2 deployment, removing proxies, increasing gas efficiency, and further decentralizing control of the protocol.
 The primary focus of the competition is to identify any findings related to concentrated liquidity provisioning, and rewards accrual from in range positions.
 
+### Ramses V3 Systems & Architecture
+![contract-infographic](https://github.com/user-attachments/assets/20b8d31f-a3d5-4d09-b314-c70a03ecb58a)
+
 ## Links
 
 - **Previous audits:**  N/A for V3, no **public** audit reports available at the time of competition.
