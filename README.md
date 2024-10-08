@@ -47,7 +47,7 @@ Ramses V3 (the codebase for this competition) refines our existing contracts fro
 The primary focus of the competition is to identify any findings related to concentrated liquidity provisioning, and rewards accrual from in range positions.
 
 ### Ramses V3 Systems & Architecture
-![contract-infographic](https://github.com/user-attachments/assets/20b8d31f-a3d5-4d09-b314-c70a03ecb58a)
+![contract-infographic](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/diagram-1.png?raw=true)
 
 ## Links
 
