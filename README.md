@@ -21,6 +21,10 @@
 - **Week 3:**
   - Oct 22-29 (Tue-Tue): submissions open (HM + QA)
 
+The HM pool for this audit will divided into increasing shares as the audit progresses. 10% of the HM pool is allocated for findings surfaced in Week 1; 20% is allocated to Week 2; and 70% is allocated to Week 3. 
+
+Low-risk issues (QA reports) should only be submitted in Week 3. Any QA reports submitted early will be invalidated and ineligible for awards. 
+
 Questions about rolling triage may be asked in [this Discord thread](https://discord.com/channels/810916927919620096/1291194011012567051).
 
 *Note: This competition will be followed by a private Zenith mitigation review.*
