@@ -36,12 +36,19 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 # Overview
 
-[ ⭐️ SPONSORS: add info here ]
+Ramses is a next-generation AMM designed to serve as Arbitrum's central liquidity hub, combining the secure and battle-tested superiority of Uniswap v3 with a custom incentive engine, vote-lock governance model, and streamlined user experience.
+
+RAMSES places a strong emphasis on fostering a vibrant and engaged ecosystem. As part of this commitment, RAMSES will launch with a focus on providing veNFTs to top protocols on Arbitrum. These veNFTs empower protocols to actively manage their positions in a way that aligns with the best interests of their platforms.
+
+RAMSES is dedicated to achieving a high level of decentralization while ensuring the platform remains functional and efficient. To strike this balance, RAMSES establishes a council comprising trusted entities from the broader community. This council is responsible for making decisions in emergency situations, ensuring the platform's integrity and security are upheld.
+
+RAMSES incorporates some of the most advanced features implemented in existing DEXes. These features have been widely recognized and adopted by many users. RAMSES aims to provide a seamless and user-friendly experience while leveraging the innovative capabilities and underlying value it brings to the market.
+
+By these core tenets, RAMSES seeks to bring forth a DEX that not only aligns with the original vision of Solidly but also introduces novel functionalities and prioritizes the needs of the community.
 
 ## Links
 
 - **Previous audits:**  N/A for V3, no **public** audit reports available at the time of competition.
-  - ✅ SCOUTS: If there are multiple report links, please format them in a list.
 - **Documentation:** https://docs.ramses.exchange/ note: all existing live documentation is for V2 (existing deployment)
 - **Website:** https://www.ramses.exchange/
 - **X/Twitter:** https://x.com/RamsesExchange
