@@ -31,12 +31,20 @@ Questions about rolling triage may be asked in [this Discord thread](https://dis
 
 ## Automated Findings / Publicly Known Issues
 
-The 4naly3er report can be found [here](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/4naly3er-report.md).
+- The 4naly3er report can be found [here](https://github.com/code-423n4/2024-10-ramses-exchange/blob/main/4naly3er-report.md).
+- Fee-on-transfer tokens (tax tokens) are not compatible with the concentrated liquidity system.
+- Wardens who either: 
+  - submitted findings during the first Rolling Triage cohort, and/or
+  - have earned the SR role,
+
+  may also view [preliminary known issues here](https://github.com/code-423n4/2024-10-ramses-exchange-known-issues), and [invalidated submissions here](https://github.com/code-423n4/2024-10-ramses-exchange-validation/issues).
+
+Please also note:
+- Ramses is a ve33 DEX with stableswap pools, univ2 pools and univ3 pools
+- As such, wardens are advised to look carefully at modified code, vs code that has been forked intact from Univ2 and UniV3 live code.
+- Any publicly known issues - e.g. [Uni V3 audits](https://github.com/Uniswap/v3-core/tree/main/audits) - and/or established design choices in UniV3 live code will be assumed to be out of scope for this audit as well.
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
-
-* Fee-on-transfer tokens (tax tokens) are not compatible with the concentrated liquidity system.
-
 
 # Overview
 
