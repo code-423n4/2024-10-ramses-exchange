@@ -1,0 +1,866 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-PUBLIC / ramses-oct8
+==============================================================
+
+[10/01/2024 20:28] itsmetechjay (pinned)
+👋 Hello and welcome to the audit channel for the **$120,000 in USDC Ramses Exchange** audit!
+
+📆 Audit opens Tuesday, 08 October 2024 20:00 (20:00 UTC) and runs through Tuesday, 29 October 2024 20:00 (20:00 UTC) (21 days).
+
+Please give a warm welcome to the Ramses Exchange team, particularly @DOG | Ramses who will be available for questions either here in the channel or via a PRIVATE thread in the PST timezone, primarily. 
+
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try, by tagging `@Docs Wolf` in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-10-ramses-exchange
+
+{Reactions}
+🔥 (18) 👍 
+
+[10/07/2024 17:15] itsmetechjay
+Pinned a message.
+
+
+[10/07/2024 20:35] itsmetechjay (pinned)
+ℹ️ This competition includes [Rolling Triage](https://code4rena.notion.site/Rolling-triage-how-it-works-11298baa1c14807ebd69cf43bf4f67c6?pvs=25). The submission phases are as follows: 
+
+- **Week 1:**
+  - Oct 8-11 (Tue-Fri): submissions open (HMs only)
+  - Oct 11-15 (Fri-Tue): submissions paused for triage
+- **Week 2:**
+  - Oct 15-18 (Tue-Fri): submissions open (HMs only)
+  - Oct 18-22 (Fri-Tue): submissions paused for triage
+- **Week 3:**
+  - Oct 22-29 (Tue-Tue): submissions open (HM + QA)
+
+Questions about rolling triage may be asked in [this Discord thread](https://discord.com/channels/810916927919620096/1291194011012567051).
+
+{Reactions}
+🔥 (9) 👀 (4) 
+
+[10/07/2024 20:35] itsmetechjay
+Pinned a message.
+
+
+[10/08/2024 20:02] C4
+**Rolling Triage**
+
+As a reminder, this audit includes [Rolling Triage](https://discord.com/channels/810916927919620096/810929015509483554/1291193790421532743).  Submissions are now open and will close on 10/11/2024 20:00. Please submit HMs only during this period.
+
+
+[10/08/2024 20:09] realfakepicnic
+@🐺Wardens For the upcoming Ramses audit, we are holding a Twitter thread competition. If this goes well, we may do more of them.
+
+**$1,000 in awards will be distributed as follows:**
+
+1. 40% of pool for best twitter thread
+2. 20% of pool for 2nd best twitter thread
+3. 10% of pool for 3rd best twitter thread
+4. 20% Twitter thread with the greatest reach/engagement
+5. 10% Quote tweet with the greatest reach/engagement
+
+**To be eligible:**
+- The thread should focus on adding value in some way—ideally the thread is about technical detail or features or educational 
+- No shilling
+- Post your thread between now and Oct 22nd at 20:00 UTC, 1 week before the competition ends
+- Drop the url of your thread in the #ramses-oct8 competition channel and tag @🧺 picnic 
+
+**Rules:**
+- to prevent drive-by LLMs, only SRs are eligible
+- staff will retweet any deemed eligible for ‘best’ (though the timing of these retweets will be staggered, so don't be surprised)
+- genuine, organic engagement is what counts (staff will make our best effort to assess this reasonably and fairly—no pure metrics because these can be gamed with bot accounts and if we ban submitters for bots, then bots can be weaponized against other competitors)
+
+{Reactions}
+🔥 (16) 🧵 (4) 
+
+[10/09/2024 08:22] willycode20
+Am i the only one finding it difficult to submit a finding🥲
+
+
+[10/09/2024 08:24] parisbro_
+Plus . Haven't make a submission
+
+
+[10/09/2024 09:40] cloudellie
+we're investigating - thanks for flagging!
+
+
+[10/09/2024 09:41] cloudellie
+@WillyCode20 @Parisbro to confirm, are you still unable to submit?
+
+
+[10/09/2024 09:45] cloudellie
+We did see some errors with users submitting findings with titles that exceeded Github's allowable character limit, so we've added validation for that to the submission form. Not seeing any other errors on our side.
+
+
+[10/09/2024 09:51] cloudellie
+You may need to refresh for that validation to work
+
+
+[10/09/2024 10:20] willycode20
+yeah, still unable to submit
+
+getting an 'internal server error' when attempting to do so
+
+{Reactions}
+👍 
+
+[10/09/2024 10:30] cloudellie
+Started a thread.
+
+
+[10/09/2024 10:55] willycode20
+resolved, Thanks
+
+turned out i had a very shitty lengthy finding title
+
+{Reactions}
+👍 
+
+[10/09/2024 16:42] keccakdog (pinned)
+Hey everyone, dropping in to give some answers to some FAQs to help provide more clarity:
+
+**Q: What are some differences between UniV3 and RamsesV3?**
+A1: UniswapV3 is =0.7.6, with no production-ready ^0.8 compatible release. We had to adapt all the math and accounting that relies on under/overflows to have proper `unchecked` blocks and flip signs where needed.
+A2: Ramses has a ve-governance system, also known as a MetaDEX or "Solidly" model. As such, we reward liquidity providers via our GaugeV3s, based on accounting in the libraries, which communicate with the V3Pool to allow a **non-custodial CL rewarding system.** Our Gauges are the first hardened 
+A3: The aforementioned rewarding system relies mainly on the following contracts-- (GaugeV3, Position, Tick, Oracle, RamsesV3Pool). The reward accounting uses a debt system which is updated upon necessary interactions.
+A4: Users can claim gauge rewards (emissions or any whitelisted LP incentives), on a per-second basis -- accruing in real-time while in range.
+A5: `feeProtocol` moved away from the bitshifting and does a linear (0-100) system for feeSplits. e.g. 10 feeProtocol = 10% of swap fees go to the FeeCollector, and 90% goes to liquidity providers. This is normally 80% to the FeeCollector by default.
+A6: In UniswapV3, pools are mapped by their feeTiers to tickSpacing. In RamsesV3 we map pools by their tickspacing explicitly, mitigating duplicate tickspacing pools with different initial fee tiers
+A7: UniswapV3 pools do not have dynamic (Adjustable) swap fees while Ramses' do. 
+
+**Q: UniswapV3 is already battle-tested / hardened, why does it need to be audited redundantly?**
+A: While UniswapV3 is infact very secure, we rewrote for ^0.8 and compile in viaIr; which has a lot of nuances regarding the math/accounting.
+
+**Q: What is a period? Why does this matter?**
+A: A period is a colloquial way to refer to an epoch. Periods align with the timestamps of the start of the epoch. [0 UTC Thursday -> 23:59 UTC Wednesday]
+A2: GaugeV3 rewards are distributed per period, and can be retroactive/future-earned depending on the period notified and current time within the epoch.
+
+Happy to answer any other questions as they come as well 🫡  happy hunting.
+
+{Reactions}
+👍 (3) hi5 
+
+[10/09/2024 16:49] 0xsorrynotsorry
+Pinned a message.
+
+
+[10/09/2024 19:50] noro9954
+@DOG | Ramses can you summarize in a small diagram the different incentive flows between the protocol actors like in the V2 docs ?
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/image-DAD30.png
+
+
+[10/09/2024 20:39] keccakdog (pinned)
+hopefully this helps (the gauge system isn't shown here for simplicity)
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/image-E629E.png
+
+
+[10/09/2024 20:43] noro9954
+does the gauge system reward LPs or just voters ?
+
+
+[10/09/2024 20:43] keccakdog
+Gauges are essentially the multirewarders for CL positions, emissions and any LP Incentives would go through there.
+
+
+[10/09/2024 20:44] keccakdog
+emissions are allocated based on voting weight from prior to epoch flip
+
+
+[10/09/2024 20:44] keccakdog
+voters earn the majority of swap fees, and 100% of voting incentives -- through individual feeDistributors per gauge(pool)
+
+
+[10/09/2024 20:48] noro9954
+who profits from RAM emissions ?
+
+
+[10/09/2024 20:51] 0xsorrynotsorry
+Pinned a message.
+
+
+[10/09/2024 21:40] keccakdog
+LPers get emissions, and a % of swap fees (default is 20%); the rest goes to feeCollection and Voters (veRAM holders) benefit from claiming these fees and any external incentives.
+
+
+[10/09/2024 22:41] acegawd
+Can I message you in a private thread ? @DOG | Ramses
+
+{Reactions}
+👍 
+
+[10/10/2024 05:23] naties29
+Anyone else having issue compiling
+
+
+[10/10/2024 05:28] naties29
+All the imports within foundry are just jacked up to oblivion.
+
+
+[10/10/2024 05:55] alcueca
+It compiles just fine with hardhat 😎
+
+
+[10/10/2024 05:55] naties29
+Yeah got it working with HH!
+
+
+[10/10/2024 05:58] alcueca
+@DOG | Ramses, can you please confirm that the contracts in scope in the contest rules are correct? Are you planning to audit contracts like the Voter and such later on?
+
+
+[10/10/2024 06:00] keccakdog
+scope is correct, the focus is around our V3 pools and Gauges. Voter and the rest have been audited a couple months ago, but do not hold user funds so are less of a priority.
+
+{Reactions}
+👍 
+
+[10/10/2024 06:03] alcueca
+And there are no tests for CLGaugeFactory, GaugeV3 or FeeCollector?
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/image-3A082.png
+
+
+[10/10/2024 06:05] keccakdog
+there are not any at this moment, and are already covered through accounting in the other tests like SPL/Audit
+
+{Reactions}
+👍 
+
+[10/10/2024 06:05] keccakdog
+Since GaugeV3 holds no positions, it is simply a reservoir you can claim from
+
+
+[10/11/2024 16:12] tewe2044
+what is it?
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/image-985B5.png
+
+
+[10/11/2024 16:15] itsmetechjay
+As this audit has [Rolling Triage](https://discord.com/channels/810916927919620096/810929015509483554/1291193790421532743), Week 1 submissions will end at that time. Please see the schedule here: https://discord.com/channels/810916927919620096/1290740440873697320/1292948315385630750
+
+
+[10/11/2024 16:17] tewe2044
+got it. 
+thank you
+
+{Reactions}
+hi5 
+
+[10/11/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+Submissions are now closed. Submissions will re-open on 10/15/2024 20:00
+
+{Reactions}
+🫡 (3) 
+
+[10/11/2024 22:25] enami_el
+Will we be able to see the sate for our past submissions after this week?
+
+
+[10/12/2024 04:43] benrai
+@Jay | C4 Since the first phase for this contest is over and we have access to all submitted findings:I was wondering,  do we need to go through all findings in the validation repo to ensure that we know all known issues or will only the issues in the findings repo be known issues once the triage is over?
+
+
+[10/12/2024 06:40] enami_el
+Do you have access to all submitted findings?
+
+
+[10/12/2024 07:25] benrai
+Yes, but I also submitted a finding. The links where shared here https://discord.com/channels/810916927919620096/1166686843421593631/1294403791067676789
+
+
+[10/12/2024 07:30] sockdrawermoney
+There will be a collection of “known issues” triaged by the validator which are likely to be more broad than what will end up accepted for awards in judging. So don’t take the issues as having been fully judged, just triaged
+
+
+[10/12/2024 07:33] benrai
+Ok, so no need to go through all submissions, we can wait for the list of "known issues" at the end of the triage phase. Will the list be separately published or will the known issues be the once that are in the findings repo after the triage?
+
+
+[10/12/2024 08:23] enami_el
+@sock I participated but I see that I don’t have access to this channel or link why?
+
+
+[10/12/2024 08:38] 0xredtrama
+I'm wondering the same
+
+
+[10/12/2024 09:12] benrai
+You do not have the SR role
+
+
+[10/12/2024 09:16] kartoonjoy
+You'll probably want to ask SR related questions in the SR channel.
+
+
+[10/12/2024 09:17] enami_el
+Sorry I didn’t know about it and I don’t have access to it
+
+
+[10/12/2024 09:21] kartoonjoy
+If you don't have the SR role, you'll see the "Known issues" after the initial findings have been reviewed. Thanks!
+
+{Reactions}
+❤️ 
+
+[10/12/2024 09:27] emmac002
+The "Known issues" will be released before second submissions open?
+
+{Reactions}
+👍 
+
+[10/12/2024 09:31] kartoonjoy
+You'll want to follow this post and linked doc for timing.
+
+https://discord.com/channels/810916927919620096/1290740440873697320/1292948315385630750
+
+{Reactions}
+👍🏻 
+
+[10/12/2024 20:01] sockdrawermoney
+Yes
+
+
+[10/15/2024 05:00] sathish9098kumar
+PoolStorage.getStorage() how this function gives particular pools state ? without any pool address other things ?
+
+
+[10/15/2024 08:25] tewe2044
+Hi, guys.
+What happens if an issue is found in an out-of-scope asset?
+
+
+[10/15/2024 09:15] gigasafu
+It wouldn't apply for this contest but if its a real legit valid critical we take security very serious and reward people who contribute, feel free to contact us about this. Also verify with code4 team if its truly out of scope or not first, and how to handle it in that case
+
+{Reactions}
+👍 
+
+[10/15/2024 09:22] 0xsorrynotsorry
+I encourage checking [this section](https://docs.code4rena.com/roles/wardens/submission-guidelines#how-to-submit-zero-day-or-otherwise-highly-sensitive-bugs) before submitting if the submission is for deployed contracts.
+
+{Embed}
+https://docs.code4rena.com/roles/wardens/submission-guidelines
+Submission guidelines | Code4rena
+
+{Reactions}
+👍 
+
+[10/15/2024 20:01] cloudellie (pinned)
+@🐺Wardens  reminder to check [the Known Issues section of the audit repo `README`](https://github.com/code-423n4/2024-10-ramses-exchange?tab=readme-ov-file#automated-findings--publicly-known-issues) for links to the preliminary known issues submitted during the first week of this audit. 
+
+This section also includes some additional notes from the sponsor re: code forked from Uniswap.
+
+⚠️ If you submitted an issue in phase 1 and *do not have the SR role*, **you must have a verified Github account associated with your C4 warden account to access the known issues repo.**
+
+You can verify your Github by visiting https://code4rena.com/account while logged in, 
+
+We'll be updating access **at this time tomorrow** for anyone who is not currently verified.
+
+{Reactions}
+✅ 
+
+[10/15/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+Submissions are now open, and will close on 10/18/2024 20:00. Please submit HMs only during this period.
+
+
+[10/15/2024 20:04] itsmetechjay
+Pinned a message.
+
+
+[10/15/2024 20:07] enami_el
+I just verified my github account, should I wait for tomorrow to see issues right?
+
+
+[10/15/2024 20:09] itsmetechjay
+correct!
+
+
+[10/15/2024 20:12] emmac002
+What about wardens are not SR and didn't submit any findings in phase 1?
+
+
+[10/15/2024 20:24] itsmetechjay
+Wardens who are not SR or didn't submit findings during phase 1 will not have access to the Known Issues repo.
+
+
+[10/15/2024 20:24] hero0130
+I will say that feels like it puts non SR wardens joining late at a disadvantage.
+
+
+[10/15/2024 20:29] hero0130
+on top of that it prevents wardens who join late from focusing on finding new bugs (what the client likely wants) and instead finding older easier to find bugs.
+
+
+[10/15/2024 20:31] hero0130
+but if ramses's code is in production i could see why you wouldnt want to make unpatched vulns public.
+
+
+[10/15/2024 20:32] itsmetechjay
+Thank you for sharing that feedback. Please feel free to direct any thoughts and additional ideas to this thread: https://discord.com/channels/810916927919620096/1291194011012567051
+
+
+[10/15/2024 21:09] cloudellie
+fwiw we're actually rerunning the team list right now because it didn't populate completely the first time -- so I think you may be in luck 😄
+
+{Reactions}
+🫡 
+
+[10/16/2024 01:39] realfakepicnic
+@🐺Wardens Reminder: 1 week left for the Twitter thread competition! Be sure to ping me with your links: https://discord.com/channels/810916927919620096/1290740440873697320/1293304166567116992
+
+
+[10/16/2024 03:13] rohankapse
+about this, the thread has to be around educating the technicalities of the protocol, functioning, features,etc, right ?
+
+
+[10/16/2024 03:28] realfakepicnic
+Those are great ideas; something that adds value to either the C4 or Ramses community, basically.
+
+{Reactions}
+🫡 
+
+[10/16/2024 05:35] benrai
+Somehow the link to the know issue in the README does not work for me. Is it broken? It leads to the repo `2024-10-ramses-exchange-known-issues`
+
+
+[10/16/2024 05:42] rodiontr
+If a duplicate was missed, do we report it during pjqa ?
+
+{Reactions}
+👍 
+
+[10/16/2024 08:07] cloudellie
+Hi, can you check now? https://github.com/code-423n4/2024-10-ramses-exchange-known-issues
+
+
+[10/16/2024 08:07] cloudellie
+Yes - PJQA is the appropriate time. Thanks!
+
+{Reactions}
+👌 ✅ 
+
+[10/16/2024 09:00] benrai
+Works now. This are all issues from the `2024-10-ramses-exchange-findings` repo, including the duplicates, right?
+
+{Reactions}
+hi5 
+
+[10/16/2024 09:13] cloudellie
+Yes, that's correct.
+
+{Reactions}
+👍 
+
+[10/16/2024 22:41] keccakdog (pinned)
+Hey all, https://diligence.consensys.io/audits/2024/08/ramses-v3/ Our most recent audit has been published. You can look through for places of reference and/or to help you identify areas of concern to look into. Note: this audit was for the pools only.
+
+{Embed}
+https://diligence.consensys.io/audits/2024/08/ramses-v3/
+Ramses V3 | Consensys Diligence
+Executive Summary This report presents the results of our engagement with Ramses to review some of the Ramses V3 smart contracts.
+The review was conducted from July 2024 to August 2024 by Heiko Fisch and Arturo Roura, and extended into September 2024 by Vladislav Yaroshuk and Arturo Roura. The extension was due to the discovery of complex vulner...
+
+{Reactions}
+👍 💜 🙏 (2) 
+
+[10/16/2024 23:20] proxima_0x
+@🧺 picnic check out my thread
+https://x.com/_proxymity/status/1846692052961997268?t=C7HkVuu-CzRWItQMkztNlw&s=19
+
+{Embed}
+https://twitter.com/_proxymity/status/1846692052961997268?t=C7HkVuu-CzRWItQMkztNlw&s=19
+proxyma | SphereOne ⛩️✨ (@_proxymity) on X
+Built on Arbitrium, @RamsesExchange is an \#AMM Based DEX that stands out for its streamlined user experience and custom incentive program which encourages liquidity provision by allowing veRAM holders to direct token emissions to liquidity pools through votes\.
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/GaDEoaYWwAATBaz-4DC78.jpg%3Alarge
+Twitter
+
+{Reactions}
+💜 (2) 
+
+[10/17/2024 04:14] 0xsorrynotsorry
+Pinned a message.
+
+
+[10/17/2024 15:28] cloudellie (pinned)
+@🐺Wardens  There was a glitch last night where a small number of submissions (8 in total) from the current submission phase were unexpectedly copied to the validation and findings repos -- thereby making them visible to wardens with repo access. 
+
+Since this carries the unfortunate risk that other wardens may have seen the issues and duplicated them, we have added these 8 submissions to the known issues repo and they will be considered out of scope for the rest of the audit.
+
+I apologize to all participants, as I realize it's disruptive to have a new batch of known issues part-way through the submission period. However, after discussing it internally we felt it was the fairest path forward, to avoid the risk of the affected wardens' work being copied. 
+
+We have taken steps to address the underlying issue so this won't happen again. Again, my sincerest apologies.
+
+~~*Note: the known issues repo will be temporarily unavailable while we add the new issues; I'll update this post when it's available again.*~~
+
+*Update: the known issues repo has been updated and access has been restored to SR wardens and wardens who submitted during the first week.*
+
+{Reactions}
+🤣 (10) 💀 (8) 😅 (3) code4rena (2) hi5 
+
+[10/17/2024 15:29] daniel526
+Oh, damn! Sorry!
+
+
+[10/17/2024 15:33] evokid
+Thank you for your efforts and following up with this! 🫡
+
+{Reactions}
+💜 (2) 🫡 
+
+[10/17/2024 15:44] proxima_0x
+Wow 💀💀
+
+
+[10/17/2024 15:45] mrpotatomagic
+Will these known issues, if valid, be rewarded from the phase 2 pot?
+
+
+[10/17/2024 15:45] cloudellie
+Yes, if found valid
+
+{Reactions}
+👍 
+
+[10/17/2024 15:59] cloudellie
+Known issues repo has been updated, and my post above has been edited to reflect this.
+
+{Reactions}
+❤️ 
+
+[10/17/2024 15:59] cloudellie
+Pinned a message.
+
+
+[10/17/2024 17:08] gbadebos
+Has everything been marked as invalidated submissions?  As I see nothing in the preliminary known issues.
+
+
+[10/17/2024 17:10] cloudellie
+Invalidated issues are also linked within [the "publicly known issues" section of the `readme`](https://github.com/code-423n4/2024-10-ramses-exchange?tab=readme-ov-file#automated-findings--publicly-known-issues)
+
+{Reactions}
+👍 
+
+[10/18/2024 07:10] daniel526
+@🧺 picnic I just shared a thread [here](https://x.com/dani3l526/status/1847173174732988626)
+
+{Reactions}
+💜 
+
+[10/18/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+Submissions are now closed. Submissions will re-open on 10/22/2024 20:00
+
+
+[10/20/2024 08:50] jauvany
+@🧺 picnic please find my thread here https://x.com/jauvany_/status/1847922145600430371
+
+{Embed}
+https://twitter.com/jauvany_/status/1847922145600430371
+Akafack Jauvany (@jauvany_) on X
+🧵 1/5
+🚀 Welcome to Ramses Exchange – the next\-gen decentralized exchange \(DEX\) revolutionizing DeFi\!
+We’re building on Uniswap V3’s concentrated liquidity model, offering advanced liquidity mining and a governance system driven by our community\. \#DeFi \#Crypto @RamsesExchange
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/GaUhRMbXEAAHZUB-E67FD.jpg%3Alarge
+Twitter
+
+{Reactions}
+💜 (3) 
+
+[10/21/2024 21:57] rohankapse
+@🧺 picnic 
+here's my twitter thread for the competition. hope it also helps fellow researchers :🫡
+https://x.com/devotedarm04/status/1848482402584412206?t=t9EGSqvTv7hbmRdkLQILdA&s=19
+
+{Embed}
+https://twitter.com/devotedarm04/status/1848482402584412206?t=t9EGSqvTv7hbmRdkLQILdA&s=19
+Rohan Kapse (@devotedarm04) on X
+Welcome to @RamsesExchange \! Here's a deep dive into Ramses Protocol—what makes it standout in the DeFi ecosystem ? We'll explore it's features, technical aspects, & how this protocol ensures secure & efficient transactions\. \( 1/🧵\)👇
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/GacTb19bsAALJBD-8CCA3.jpg%3Alarge
+Twitter
+
+{Reactions}
+💜 (4) 
+
+[10/22/2024 20:00] proxima_0x
+Submissions will be opened soon I think
+
+
+[10/22/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+Submissions are now open, and will close on 10/29/2024 20:00.  You may submit HMs and QA reports during this period.
+
+
+[10/22/2024 20:02] proxima_0x
+The thread contest has ended too right??
+
+{Reactions}
+👍 
+
+[10/22/2024 20:04] cloudellie
+@🐺Wardens the third and final submission phase for [Ramses Exchange's competitive audit](https://code4rena.com/audits/2024-10-ramses-exchange) is now open! 
+
+Reminder to check [the Known Issues section of the audit repo `README`](https://github.com/code-423n4/2024-10-ramses-exchange?tab=readme-ov-file#automated-findings--publicly-known-issues) for links to the preliminary known issues submitted during the first two weeks of this audit. 
+
+Good luck and good hunting!
+
+
+[10/23/2024 13:50] proxima_0x
+@🧺 picnic will the thread contest winner be announced this week or at the end? of the audit contest??
+
+
+[10/23/2024 17:53] realfakepicnic
+We will announce along with awards for the competition /cc @Jay | C4
+
+{Reactions}
+🫡 checkmark 🔺 
+
+[10/23/2024 17:54] proxima_0x
+Okay thanks
+
+
+[10/24/2024 13:46] 0xswahili
+Test suite errors on test/v3/Voter.spec.ts#claimClGaugeRewards, claimIncentives, claimRewards. Mind helping there ?
+
+
+[10/24/2024 14:31] proxima_0x
+@CloudEllie
+
+
+[10/29/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **Ramses Exchange** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks.
+
+
+[10/29/2024 20:04] chaduke3730
+good luck to all, manged to submit a couple just today
+
+
+[10/29/2024 20:05] proxima_0x
+Good luck y'all
+
+
+[10/29/2024 22:59] enami_el
+Does wardens who participated on this audit still have the right to access to backstage? Without sr role?
+
+
+[10/29/2024 23:48] mrpotatomagic
+Mostly not, the finalized findings can now only be viewed by non-SR after the report is published. Previous access to phase 1 & 2 findings was mainly provided to avoid submitting duplicates of the known issues.
+
+{Reactions}
+thankyou (3) 👆 (2) 
+
+[10/29/2024 23:48] enami_el
+Ok thank you 🫡
+
+
+[10/30/2024 04:20] the_akroid
+When the final report will be published? Since the audit competition ended yesterday.
+
+
+[10/30/2024 05:46] mrpotatomagic
+Whenever sponsor team gives the green signal to C4 staff, no specific eta
+
+{Reactions}
+👆 (3) 
+
+[11/02/2024 13:06] robertauditor_60177
+Hi @here
+I am new to here
+
+
+[11/02/2024 13:07] robertauditor_60177
+Can anyone let me know how long does the judgment take in usual?
+What steps are there in it?
+
+
+[11/05/2024 16:21] dimulski
+How many people participated in this contest?
+
+
+[11/14/2024 23:35] liveactionllamac4
+🤑 🎉  Awards for **Ramses Exchange**:
+
+$50,546.53 USDC » @rileyholterhus
+$16,033.68 USDC » @MrPotatoMagic
+$4,340.36 USDC » @BenRai
+$3,781.82 USDC » @0x37
+$3,781.82 USDC » wasm_it (@rustguy and @0xrex)
+$1,515.79 USDC » @Sathish9098
+
+**🏁 Findings Summary**
+--------------------------------------—
+0 High risk findings
+2 Med risk findings
+71 wardens contributed
+
+Top Hunter: rileyholterhus
+Top Gatherers: rileyholterhus, BenRai, 0x37, and wasm_it
+Top QA Report: Sathish9098
+
+**Twitter Thread Competition Results**
+--------------------------------------—
+*(Original details [here](https://discord.com/channels/810916927919620096/1290740440873697320/1293304166567116992))*
+- Best Twitter thread: @devotedarm04 ($400 USDC)
+- 2nd best Twitter thread: @proxyma | Paladin ($200 USDC)
+- 3rd best Twitter thread: @Daniel526 ($100 USDC)
+- Greatest reach/engagement: @devotedarm04 ($200 USDC)
+--------------------------------------—
+
+Awards will be distributed on Polygon. Congratulations all!  💸 💸 💸
+
+⚠️ Awardees, be sure to review [this announcement](https://discord.com/channels/810916927919620096/810929015509483554/1272625452909072415) and fill in your tax info if you haven't already. This must be completed within 30 days (i.e. before Saturday, 14 December 2024) to receive your award distribution for this audit.
+
+Please note:
+- If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.
+- Also, the leaderboard will be updated with these audit results at a later date.
+
+{Reactions}
+🚀 (9) C4Keycap (4) code4rena (7) 🔥 (5) 🎉 (4) 👏 (4) 
+
+[11/15/2024 08:12] mrpotatomagic
+Congratulations on the win @rileyholterhus 🎉 :code4rena:
+
+{Reactions}
+🔥 (4) 
+
+[11/15/2024 10:43] holterhus
+Thank you @MrPotatoMagic!Congratulations to everyone 🫡
+
+{Reactions}
+🫡 (6) ❤️ (3) hi5 (3) 
+
+[11/19/2024 08:37] proxima_0x
+Quick question @🦙 liveactionllama | C4 , will the distribution be this week??
+
+
+[11/19/2024 11:51] daniel526
+funds when?
+
+
+[11/19/2024 20:25] liveactionllamac4
+@proxyma | Paladin & @Daniel526 - I believe awards for the Twitter thread competition will follow the normal timing (i.e. first batch of awards distributed within ~1 week of the award announcement, if you've [completed your tax info](https://docs.code4rena.com/awarding/incentive-model-and-awards/awarding-process#tax-information-for-code4rena-contributors-wardens-judges-etc)). I'll double-check with our payments team though. **Edit:** confirmed it should follow the normal timing.
+
+{Embed}
+https://docs.code4rena.com/awarding/incentive-model-and-awards/awarding-process
+Awarding process | Code4rena
+This is a high level overview of the C4 awarding process.
+
+{Reactions}
+🚀 (2) 🔥 (2) 🫡 (2) 
+
+[11/19/2024 20:31] proxima_0x
+No problem.
+Alright completed mine
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/Screenshot_20241119-213056-B7293.png
+
+{Reactions}
+👍 (3) 
+
+[11/21/2024 08:51] sathish9098kumar
+Still rewards not sent ?
+
+
+[11/21/2024 10:11] daniel526
+either today or tomorrow
+
+{Reactions}
+👍 (2) 
+
+[11/22/2024 18:56] rohankapse
+hey folks, did y'll receive the payouts ? i think it's been a week ig. @CloudEllie
+
+
+[11/22/2024 19:21] proxima_0x
+Not yet mate.
+We waiting for ours too
+
+
+[11/24/2024 10:43] proxima_0x
+@proxyma | Paladin , @devotedarm04 , @Daniel526 and @Sathish9098 rn 😂😂
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - ramses-oct8 [1290740440873697320].txt_Files/20241124_114210-4DEC7.jpg
+
+{Reactions}
+😂 (3) 😴 
+
+[11/27/2024 08:09] proxima_0x
+@🦙 liveactionllama | C4 the thread contest wins are yet to be paid out
+
+
+[11/27/2024 10:27] cloudellie
+We're aware and have flagged for the finance team
+
+
+[11/27/2024 10:28] proxima_0x
+Okay great 😁
+
+{Reactions}
+hi5 
+
+[11/27/2024 13:00] rohankapse
+Just a request, do let us know when it's sent plzz.
+thanks ! 🙏
+
+{Reactions}
+👍 
+
+[11/27/2024 13:05] proxima_0x
+Yeah😁
+
+
+[11/27/2024 17:05] proxima_0x
+Received with thanks
+
+{Reactions}
+🙌 
+
+[11/27/2024 17:09] cloudellie
+haha you found out before I did
+
+{Reactions}
+🫡 
+
+[11/27/2024 17:13] rohankapse
+thanks ! 🫡
+
+{Reactions}
+hi5 
+
+[11/27/2024 23:45] proxima_0x
+Any possibility for another thread contest @CloudEllie  ❓👀👀
+
+
+[12/05/2024 23:09] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted 12/13/2024 23:08. Please make sure to grab anything you might need before then.
+
+
+[12/12/2024 18:22] itsmetechjay
+ℹ️ Reminder: this channel will be deleted after 24 hours.
+
+
+==============================================================
+Exported 140 message(s)
+==============================================================
